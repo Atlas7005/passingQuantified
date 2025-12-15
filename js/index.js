@@ -37,7 +37,8 @@ if (savedBirthday) {
 updateTimeProgressBars();
 
 function updateTimeProgressBars() {
-    const birthday = new Date(localStorage.getItem("birthday"));
+    const birthdayStr = localStorage.getItem("birthday");
+    const birthday = birthdayStr ? new Date(birthdayStr) : null;
     const now = new Date();
 
     document.querySelectorAll(".progressBar").forEach(bar => {
@@ -107,6 +108,7 @@ function updateTimeProgressBars() {
                 } else {
                     bar.style.width = "0%";
                     document.getElementById("birthdayPercentage").innerText = "N/A";
+                    document.querySelector("#birthday .timeLeft").innerText = "Set your birthday in settings";
                     return;
                 }
                 break;
