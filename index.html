@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Passing, Quantified</title>
+
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+		<link rel="stylesheet" href="/css/global.css" />
+		<link rel="stylesheet" href="/css/index.css" />
+
+		<script type="module" src="/js/index.js"></script>
+	</head>
+	<body>
+		<button id="toggleSettings" aria-label="Toggle Settings"><i class="fas fa-cog"></i></button>
+		<aside id="settings">
+			<h2>Settings</h2>
+			<button id="closeSettings" aria-label="Close Settings"><i class="fas fa-times"></i></button>
+			<label for="birthday">Birthday:</label>
+			<input type="date" id="birthday" />
+			<button id="applySettings">Apply Settings</button>
+		</aside>
+		<main>
+			<h1>Passing, Quantified</h1>
+			<p>A visualization of time passing through quantified progress bars.</p>
+			<section id="progressBars">
+				<article id="birthday">
+					<div class="details">
+						<h2 class="title">Birthday</h2>
+						<p class="timeLeft">1y 1m 1w 1d 1h 1m 1s left</p>
+					</div>
+					<div class="progressContainer">
+						<div class="progressBar" id="birthdayBar"></div>
+						<span id="birthdayPercentage">0%</span>
+					</div>
+				</article>
+				<article id="lifetime">
+					<div class="details">
+						<h2 class="title">Lifetime (70 years)</h2>
+						<p class="timeLeft">1y 1m 1w 1d 1h 1m 1s left</p>
+					</div>
+					<div class="progressContainer">
+						<div class="progressBar" id="lifetimeBar"></div>
+						<span id="lifetimePercentage">0%</span>
+					</div>
+				</article>
+				<article id="decade">
+					<div class="details">
+						<h2 class="title">Decade</h2>
+						<p class="timeLeft">1y 1m 1w 1d 1h 1m 1s left</p>
+					</div>
+					<div class="progressContainer">
+						<div class="progressBar" id="decadeBar"></div>
+						<span id="decadePercentage">0%</span>
+					</div>
+				</article>
+				<article id="year">
+					<div class="details">
+						<h2 class="title">Year</h2>
+						<p class="timeLeft">1m 1w 1d 1h 1m 1s left</p>
+					</div>
+					<div class="progressContainer">
+						<div class="progressBar" id="yearBar"></div>
+						<span id="yearPercentage">0%</span>
+					</div>
+				</article>
+				<article id="month">
+					<div class="details">
+						<h2 class="title">Month</h2>
+						<p class="timeLeft">1w 1d 1h 1m 1s left</p>
+					</div>
+					<div class="progressContainer">
+						<div class="progressBar" id="monthBar"></div>
+						<span id="monthPercentage">0%</span>
+					</div>
+				</article>
+				<article id="week">
+					<div class="details">
+						<h2 class="title">Week</h2>
+						<p class="timeLeft">1d 1h 1m 1s left</p>
+					</div>
+					<div class="progressContainer">
+						<div class="progressBar" id="weekBar"></div>
+						<span id="weekPercentage">0%</span>
+					</div>
+				</article>
+				<article id="day">
+					<div class="details">
+						<h2 class="title">Day</h2>
+						<p class="timeLeft">1h 1m 1s left</p>
+					</div>
+					<div class="progressContainer">
+						<div class="progressBar" id="dayBar"></div>
+						<span id="dayPercentage">0%</span>
+					</div>
+				</article>
+				<article id="hour">
+					<div class="details">
+						<h2 class="title">Hour</h2>
+						<p class="timeLeft">1m 1s left</p>
+					</div>
+					<div class="progressContainer">
+						<div class="progressBar" id="hourBar"></div>
+						<span id="hourPercentage">0%</span>
+					</div>
+				</article>
+				<article id="minute">
+					<div class="details">
+						<h2 class="title">Minute</h2>
+						<p class="timeLeft">1s left</p>
+					</div>
+					<div class="progressContainer">
+						<div class="progressBar" id="minuteBar"></div>
+						<span id="minutePercentage">0%</span>
+					</div>
+				</article>
+			</section>
+		</main>
+		<footer>
+			<p>&copy; <span id="year">2025</span> Passing, Quantified. All rights reserved.</p>
+			<p>Made with &#10084; by <a href="https://atlasdev.men/" target="_blank" rel="noopener noreferrer">Atlas</a></p>
+		</footer>
+	</body>
+</html>

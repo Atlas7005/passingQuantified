@@ -1,0 +1,155 @@
+button#toggleSettings {
+	position: fixed;
+	top: 1.6rem;
+	right: 1.6rem;
+	z-index: 1000;
+	background-color: color-mix(in srgb, var(--background-color) 90%, var(--primary-color) 10%);
+	border: 0.2rem solid var(--primary-color);
+	border-radius: 0.8rem;
+	width: 3.8rem;
+	height: 3.8rem;
+	font-size: 1.4rem;
+	line-height: 1;
+	color: var(--text-color);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: background-color 0.3s, color 0.3s;
+
+	&:hover {
+		background-color: color-mix(in srgb, var(--primary-color) 35%, var(--background-color) 65%);
+	}
+
+	img.emoji {
+		height: 1.6rem;
+		width: 1.6rem;
+		margin: 0;
+		vertical-align: -0.1em;
+	}
+
+	&[aria-expanded="true"] {
+		display: none;
+	}
+}
+
+aside#settings {
+	position: fixed;
+	top: 0;
+	right: 0;
+	height: 100vh;
+	width: 300px;
+	background-color: var(--background-color);
+	border-left: 2px solid var(--border-color);
+	box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+	padding: 2rem;
+	transform: translateX(100%);
+	transition: transform 0.3s;
+	z-index: 999;
+
+	&.open {
+		transform: translateX(0);
+	}
+
+	button#closeSettings {
+		position: absolute;
+		top: 1.6rem;
+		right: 1.6rem;
+		background: none;
+		border: none;
+		font-size: 2rem;
+		color: var(--text-color);
+		cursor: pointer;
+	}
+
+	h2 {
+		margin-top: 0;
+		margin-bottom: 1.5rem;
+	}
+
+	input[type="date"] {
+		width: 100%;
+		padding: 0.5rem;
+		font-size: 1.6rem;
+		border: 1px solid var(--border-color);
+		border-radius: 0.4rem;
+	}
+
+	button#applySettings {
+		margin-top: 2rem;
+		padding: 0.8rem 1.2rem;
+		font-size: 1.6rem;
+		text-align: center;
+		width: 100%;
+		background-color: var(--primary-color);
+		color: var(--text-color);
+		border: none;
+		border-radius: 0.4rem;
+		cursor: pointer;
+		transition: background-color 0.3s;
+
+		&:hover {
+			background-color: color-mix(in srgb, var(--primary-color) 75%, white);
+		}
+	}
+}
+
+main {
+	padding: 6rem 2rem 2rem 2rem;
+	text-align: center;
+}
+
+section#progressBars {
+	margin: 0 auto;
+	margin-top: 2rem;
+	max-width: 600px;
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+
+	article {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+
+		.details {
+			display: flex;
+			justify-content: space-between;
+			width: 100%;
+
+			.timeLeft {
+				font-size: 1.4rem;
+				color: var(--text-muted-color);
+			}
+		}
+
+		h2 {
+			margin: 0;
+			font-size: 1.8rem;
+			font-weight: 600;
+		}
+
+		.progressContainer {
+			width: 100%;
+			background-color: var(--border-color);
+			height: 2.6rem;
+			border-radius: 1rem;
+			overflow: hidden;
+			position: relative;
+
+			.progressBar {
+				height: 100%;
+				background-color: var(--primary-color);
+				width: 0%;
+				border-radius: 1rem;
+				transition: width 0.5s ease;
+			}
+
+			span {
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				transform: translate(-50%, -50%);
+			}
+		}
+	}
+}
