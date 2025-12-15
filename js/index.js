@@ -16,7 +16,7 @@ closeSettings.onclick = () => {
 
 setInterval(() => {
     updateTimeProgressBars();
-}, 100);
+}, 1000);
 
 applySettings.onclick = () => {
     const birthdayInput = document.getElementById("birthday").value;
@@ -123,38 +123,42 @@ function updateTimeProgressBars() {
         bar.style.width = percentage + "%";
 
         const percentageTextId = bar.id.replace("Bar", "Percentage");
-        document.getElementById(percentageTextId).innerText = parseInt(percentage) + "%";
+        document.getElementById(percentageTextId).innerText = percentage.toFixed(1) + "%";
 
-        const isBirthdayToday = now.getMonth() === new Date(localStorage.getItem("birthday")).getMonth() &&
-            now.getDate() === new Date(localStorage.getItem("birthday")).getDate();
+        if (bar.id === "birthdayBar") {
+            const birthdayStr = localStorage.getItem("birthday");
+            const isBirthdayToday = birthdayStr &&
+                now.getMonth() === new Date(birthdayStr).getMonth() &&
+                now.getDate() === new Date(birthdayStr).getDate();
 
-        if (!isBirthdayToday) {
-            document.querySelector("#birthday .timeLeft").style.color = "";
-            document.querySelector("#birthday .timeLeft").style.fontWeight = "";
-
-            const timeLeftMs = endDate - now;
-            const timeUnits = [
-                { label: 'y', value: 1000 * 60 * 60 * 24 * 365 },
-                { label: 'm', value: 1000 * 60 * 60 * 24 * 30 },
-                { label: 'w', value: 1000 * 60 * 60 * 24 * 7 },
-                { label: 'd', value: 1000 * 60 * 60 * 24 },
-                { label: 'h', value: 1000 * 60 * 60 },
-                { label: 'm', value: 1000 * 60 },
-                { label: 's', value: 1000 }
-            ];
-            let timeLeftStr = '';
-            let remainingTime = timeLeftMs;
-
-            for (const unit of timeUnits) {
-                const unitValue = Math.floor(remainingTime / unit.value);
-                if (unitValue > 0) {
-                    timeLeftStr += `${unitValue}${unit.label} `;
-                }
-                remainingTime %= unit.value;
+            if (!isBirthdayToday) {
+                document.querySelector("#birthday .timeLeft").style.color = "";
+                document.querySelector("#birthday .timeLeft").style.fontWeight = "";
             }
-
-            const timeLeftElementId = bar.id.replace("Bar", "");;
-            document.querySelector(`#${timeLeftElementId} .timeLeft`).innerText = timeLeftStr.trim().length > 0 ? timeLeftStr.trim() + " left" : "0s left";
         }
+
+        const timeLeftMs = endDate - now;
+        const timeUnits = [
+            { label: 'y', value: 1000 * 60 * 60 * 24 * 365 },
+            { label: 'mo', value: 1000 * 60 * 60 * 24 * 30 },
+            { label: 'w', value: 1000 * 60 * 60 * 24 * 7 },
+            { label: 'd', value: 1000 * 60 * 60 * 24 },
+            { label: 'h', value: 1000 * 60 * 60 },
+            { label: 'm', value: 1000 * 60 },
+            { label: 's', value: 1000 }
+        ];
+        let timeLeftStr = '';
+        let remainingTime = timeLeftMs;
+
+        for (const unit of timeUnits) {
+            const unitValue = Math.floor(remainingTime / unit.value);
+            if (unitValue > 0) {
+                timeLeftStr += `${unitValue}${unit.label} `;
+            }
+            remainingTime %= unit.value;
+        }
+
+        const timeLeftElementId = bar.id.replace("Bar", "");
+        document.querySelector(`#${timeLeftElementId} .timeLeft`).innerText = timeLeftStr.trim().length > 0 ? timeLeftStr.trim() + " left" : "0s left";
     });
 }
