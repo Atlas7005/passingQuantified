@@ -40,6 +40,7 @@ The live demo is available [here](https://atlas7005.github.io/passingQuantified/
 ## 🛠️ Installation
 
 1. **Clone the repository**:
+
    ```bash
    git clone https://github.com/Atlas7005/passingQuantified.git
    cd passingQuantified
@@ -61,6 +62,7 @@ The live demo is available [here](https://atlas7005.github.io/passingQuantified/
 ### Understanding the Progress Bars
 
 Each progress bar shows:
+
 - **Title**: The time period being tracked
 - **Time Left**: Remaining time in that period (e.g., "2d 5h 30m 15s left")
 - **Progress Bar**: Visual representation of elapsed time
@@ -69,6 +71,7 @@ Each progress bar shows:
 ## 🎨 Customization
 
 The project uses CSS variables for easy theming. Modify `css/global.css` to customize:
+
 - Colors (`--primary-color`, `--background-color`, `--text-color`)
 - Border styles
 - Font sizes
@@ -91,13 +94,14 @@ timeProgressBars/
 
 1. **Time Calculation**: The JavaScript calculates the start and end times for each period (minute, hour, day, etc.)
 2. **Progress Computation**: Elapsed time is divided by total duration to get percentage
-3. **Real-time Updates**: A `setInterval` runs every 100ms to update all progress bars
+3. **Real-time Updates**: A `setInterval` runs every 1s to update all progress bars
 4. **Local Storage**: Birthday data is persisted using browser's localStorage API
 5. **Dynamic Rendering**: Progress bars and time remaining text update smoothly in real-time
 
 ## 🌐 Browser Compatibility
 
 Works on all modern browsers:
+
 - ✅ Chrome/Edge (latest)
 - ✅ Firefox (latest)
 - ✅ Safari (latest)
@@ -106,6 +110,7 @@ Works on all modern browsers:
 ## 🤝 Contributing
 
 Contributions are welcome! Feel free to:
+
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
 3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
@@ -128,6 +133,7 @@ This project is open source and available under the [GNU Affero General Public L
 ## 👤 Author
 
 **Atlas7005**
+
 - GitHub: [@Atlas7005](https://github.com/Atlas7005)
 - Repository: [passingQuantified](https://github.com/Atlas7005/passingQuantified)
 
