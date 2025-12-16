@@ -26,6 +26,12 @@ applySettings.onclick = () => {
     }
 }
 
+const showHolidaysCheckbox = document.getElementById("showHolidays");
+showHolidaysCheckbox.onchange = () => {
+    localStorage.setItem("showHolidays", showHolidaysCheckbox.checked);
+    updateTimeProgressBars();
+}
+
 const savedBirthday = localStorage.getItem("birthday");
 if (savedBirthday) {
     const birthdayDate = new Date(savedBirthday);
@@ -34,14 +40,29 @@ if (savedBirthday) {
     birthdayInput.value = formattedDate;
 }
 
+const savedShowHolidays = localStorage.getItem("showHolidays");
+if (savedShowHolidays !== null) {
+    showHolidaysCheckbox.checked = savedShowHolidays === "true";
+}
+
 updateTimeProgressBars();
 
 function updateTimeProgressBars() {
     const birthdayStr = localStorage.getItem("birthday");
     const birthday = birthdayStr ? new Date(birthdayStr) : null;
     const now = new Date();
+    const showHolidays = localStorage.getItem("showHolidays") !== "false";
+
+    const holidayBars = ["halloweenBar", "christmasBar", "valentineBar", "fridayThe13thBar"];
 
     document.querySelectorAll(".progressBar").forEach(bar => {
+        if (holidayBars.includes(bar.id)) {
+            const article = bar.closest("article");
+            if (article && showHolidays !== null) {
+                article.style.display = showHolidays ? "" : "none";
+            }
+            if (!showHolidays) return;
+        }
         let startDate, endDate;
 
         switch (bar.id) {
@@ -114,15 +135,13 @@ function updateTimeProgressBars() {
                 }
                 break;
             case "fridayThe13thBar":
-                // Find next Friday the 13th
                 const findNextFridayThe13th = (fromDate) => {
                     let year = fromDate.getFullYear();
                     let month = fromDate.getMonth();
 
-                    // Check up to 24 months ahead (at least one Friday 13th must exist)
                     for (let i = 0; i < 24; i++) {
                         const testDate = new Date(year, month, 13);
-                        if (testDate > fromDate && testDate.getDay() === 5) { // 5 = Friday
+                        if (testDate > fromDate && testDate.getDay() === 5) {
                             return testDate;
                         }
                         month++;
@@ -134,12 +153,10 @@ function updateTimeProgressBars() {
                     return null;
                 };
 
-                // Find previous Friday the 13th
                 const findPrevFridayThe13th = (fromDate) => {
                     let year = fromDate.getFullYear();
                     let month = fromDate.getMonth();
 
-                    // Check up to 24 months back
                     for (let i = 0; i < 24; i++) {
                         const testDate = new Date(year, month, 13);
                         if (testDate < fromDate && testDate.getDay() === 5) {

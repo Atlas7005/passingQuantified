@@ -91,6 +91,18 @@ aside#settings {
 			background-color: color-mix(in srgb, var(--primary-color) 75%, white);
 		}
 	}
+
+	label[for="showHolidays"] {
+		display: flex;
+		align-items: center;
+		font-size: 1.4rem;
+		margin-top: 1rem;
+
+		input[type="checkbox"] {
+			margin-right: 0.5rem;
+			transform: scale(1.2);
+		}
+	}
 }
 
 main {
