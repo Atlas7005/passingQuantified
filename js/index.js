@@ -66,6 +66,13 @@ function updateTimeProgressBars() {
                 startDate = new Date(now.getFullYear(), now.getMonth(), 1);
                 endDate = new Date(now.getFullYear(), now.getMonth() + 1, 1);
                 break;
+            case "quarterEndBar":
+                const currentMonth = now.getMonth();
+                const currentQuarter = Math.floor(currentMonth / 3) + 1;
+                const quarterEndMonth = currentQuarter * 3;
+                startDate = new Date(now.getFullYear(), quarterEndMonth - 3, 1);
+                endDate = new Date(now.getFullYear(), quarterEndMonth, 1);
+                break;
             case "yearBar":
                 startDate = new Date(now.getFullYear(), 0, 1);
                 endDate = new Date(now.getFullYear() + 1, 0, 1);
@@ -74,6 +81,81 @@ function updateTimeProgressBars() {
                 const decadeStartYear = Math.floor(now.getFullYear() / 10) * 10;
                 startDate = new Date(decadeStartYear, 0, 1);
                 endDate = new Date(decadeStartYear + 10, 0, 1);
+                break;
+            case "halloweenBar":
+                const halloweenThisYear = new Date(now.getFullYear(), 9, 31);
+                if (now < halloweenThisYear) {
+                    startDate = new Date(now.getFullYear() - 1, 9, 31);
+                    endDate = halloweenThisYear;
+                } else {
+                    startDate = halloweenThisYear;
+                    endDate = new Date(now.getFullYear() + 1, 9, 31);
+                }
+                break;
+            case "christmasBar":
+                const currentYear = now.getFullYear();
+                const christmasThisYear = new Date(currentYear, 11, 25);
+                if (now < christmasThisYear) {
+                    startDate = new Date(currentYear - 1, 11, 25);
+                    endDate = christmasThisYear;
+                } else {
+                    startDate = christmasThisYear;
+                    endDate = new Date(currentYear + 1, 11, 25);
+                }
+                break;
+            case "valentineBar":
+                const valentineThisYear = new Date(now.getFullYear(), 1, 14);
+                if (now < valentineThisYear) {
+                    startDate = new Date(now.getFullYear() - 1, 1, 14);
+                    endDate = valentineThisYear;
+                } else {
+                    startDate = valentineThisYear;
+                    endDate = new Date(now.getFullYear() + 1, 1, 14);
+                }
+                break;
+            case "fridayThe13thBar":
+                // Find next Friday the 13th
+                const findNextFridayThe13th = (fromDate) => {
+                    let year = fromDate.getFullYear();
+                    let month = fromDate.getMonth();
+
+                    // Check up to 24 months ahead (at least one Friday 13th must exist)
+                    for (let i = 0; i < 24; i++) {
+                        const testDate = new Date(year, month, 13);
+                        if (testDate > fromDate && testDate.getDay() === 5) { // 5 = Friday
+                            return testDate;
+                        }
+                        month++;
+                        if (month > 11) {
+                            month = 0;
+                            year++;
+                        }
+                    }
+                    return null;
+                };
+
+                // Find previous Friday the 13th
+                const findPrevFridayThe13th = (fromDate) => {
+                    let year = fromDate.getFullYear();
+                    let month = fromDate.getMonth();
+
+                    // Check up to 24 months back
+                    for (let i = 0; i < 24; i++) {
+                        const testDate = new Date(year, month, 13);
+                        if (testDate < fromDate && testDate.getDay() === 5) {
+                            return testDate;
+                        }
+                        month--;
+                        if (month < 0) {
+                            month = 11;
+                            year--;
+                        }
+                    }
+                    return null;
+                };
+
+                endDate = findNextFridayThe13th(now);
+                startDate = findPrevFridayThe13th(now) || findPrevFridayThe13th(endDate);
                 break;
             case "lifetimeBar":
                 if (birthday) {
