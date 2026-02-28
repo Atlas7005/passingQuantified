@@ -14,7 +14,9 @@ button#toggleSettings {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	transition: background-color 0.3s, color 0.3s;
+	transition:
+		background-color 0.3s,
+		color 0.3s;
 
 	&:hover {
 		background-color: color-mix(in srgb, var(--primary-color) 35%, var(--background-color) 65%);
@@ -45,6 +47,7 @@ aside#settings {
 	transform: translateX(100%);
 	transition: transform 0.3s;
 	z-index: 999;
+	overflow-y: auto;
 
 	&.open {
 		transform: translateX(0);
@@ -103,6 +106,100 @@ aside#settings {
 			transform: scale(1.2);
 		}
 	}
+
+	hr {
+		margin: 2rem 0;
+		border: none;
+		border-top: 1px solid var(--border-color);
+	}
+
+	h3 {
+		margin-top: 1rem;
+		margin-bottom: 1rem;
+		font-size: 1.8rem;
+	}
+
+	h4 {
+		font-size: 1.4rem;
+		margin-bottom: 0.5rem;
+		color: var(--text-muted-color);
+	}
+
+	label:not([for="showHolidays"]) {
+		display: block;
+		margin-top: 1rem;
+		margin-bottom: 0.5rem;
+		font-size: 1.4rem;
+	}
+
+	input[type="text"],
+	input[type="datetime-local"] {
+		width: 100%;
+		padding: 0.8rem;
+		font-size: 1.4rem;
+		border: 1px solid var(--border-color);
+		border-radius: 0.4rem;
+		background-color: var(--background-color);
+		color: var(--text-color);
+
+		&:focus {
+			border-color: var(--primary-color);
+			outline: none;
+		}
+	}
+
+	button#addCustomEvent {
+		margin-top: 1rem;
+		padding: 0.8rem 1.2rem;
+		font-size: 1.4rem;
+		text-align: center;
+		width: 100%;
+		background-color: var(--secondary-color);
+		color: var(--text-color);
+		border: none;
+		border-radius: 0.4rem;
+		cursor: pointer;
+		transition: background-color 0.3s;
+
+		&:hover {
+			background-color: color-mix(in srgb, var(--secondary-color) 75%, white);
+		}
+	}
+
+	#customEventsList {
+		margin-top: 1rem;
+
+		.customEventItem {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding: 0.8rem;
+			margin-bottom: 0.5rem;
+			background-color: color-mix(in srgb, var(--background-color) 95%, var(--text-color) 5%);
+			border: 1px solid var(--border-color);
+			border-radius: 0.4rem;
+			font-size: 1.3rem;
+
+			span {
+				flex: 1;
+			}
+
+			button.deleteEvent {
+				background-color: var(--error-color);
+				color: var(--text-color);
+				border: none;
+				border-radius: 0.4rem;
+				padding: 0.5rem 0.8rem;
+				cursor: pointer;
+				font-size: 1.2rem;
+				transition: background-color 0.3s;
+
+				&:hover {
+					background-color: color-mix(in srgb, var(--error-color) 75%, white);
+				}
+			}
+		}
+	}
 }
 
 main {
@@ -151,6 +248,69 @@ section#progressBars {
 			.progressBar {
 				height: 100%;
 				background-color: var(--primary-color);
+				width: 0%;
+				border-radius: 1rem;
+				transition: width 0.3s ease;
+			}
+
+			span {
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				transform: translate(-50%, -50%);
+			}
+		}
+	}
+}
+
+section#customProgressBars {
+	margin: 0 auto;
+	margin-top: 2rem;
+	max-width: 600px;
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+
+	> h2 {
+		font-size: 2.4rem;
+		text-align: center;
+		color: var(--secondary-color);
+	}
+
+	article {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+
+		.details {
+			display: flex;
+			justify-content: space-between;
+			width: 100%;
+
+			.timeLeft {
+				font-size: 1.4rem;
+				color: var(--text-muted-color);
+			}
+		}
+
+		h2 {
+			margin: 0;
+			font-size: 1.8rem;
+			font-weight: 600;
+			text-align: left;
+		}
+
+		.progressContainer {
+			width: 100%;
+			background-color: var(--border-color);
+			height: 2.6rem;
+			border-radius: 1rem;
+			overflow: hidden;
+			position: relative;
+
+			.progressBar {
+				height: 100%;
+				background-color: var(--secondary-color);
 				width: 0%;
 				border-radius: 1rem;
 				transition: width 0.3s ease;

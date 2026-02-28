@@ -123,7 +123,7 @@ Contributions are welcome! Feel free to:
 - [ ] Custom life expectancy setting
 - [ ] Share progress snapshots
 - [ ] Multiple birthday tracking
-- [ ] Custom time periods
+- [x] Custom time periods
 - [ ] Sound notifications
 
 ## 📄 License
